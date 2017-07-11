@@ -95,17 +95,17 @@ define(function(require){
     loader.addEventListener('progress', ui.onLoaded);
     //预加载资源
     loader.loadManifest([
-        {src:__uri('../img/squirrel.png'), id: 'squirrel'},
-        {src:__uri('../img/bg.png'), id: 'bg'},
-        {src:__uri('../img/ball.png'), id: 'ball'},
-        {src:__uri('../img/gate.png'), id: 'gate'},
-        {src:__uri('../img/gate_l.png'), id: 'gate_l'},
-        {src:__uri('../img/gate_r.png'), id: 'gate_r'},
-        {src:__uri('../img/keeper.png'), id: 'keeper'},
-        {src:__uri('../img/arrow.png'), id: 'arrow'},
-        {src:__uri('../img/player_1.png'), id: 'player_1'},
-        {src:__uri('../img/player_2.png'), id: 'player_2'},
-        {src:__uri('../img/guide.png')}
+        {src:'/hg/goal/img/squirrel.png', id: 'squirrel'},
+        {src:'/hg/goal/img/bg.png', id: 'bg'},
+        {src:'/hg/goal/img/ball.png', id: 'ball'},
+        {src:'/hg/goal/img/gate.png', id: 'gate'},
+        {src:'/hg/goal/img/gate_l.png', id: 'gate_l'},
+        {src:'/hg/goal/img/gate_r.png', id: 'gate_r'},
+        {src:'/hg/goal/img/keeper.png', id: 'keeper'},
+        {src:'/hg/goal/img/arrow.png', id: 'arrow'},
+        {src:'/hg/goal/img/player_1.png', id: 'player_1'},
+        {src:'/hg/goal/img/player_2.png', id: 'player_2'},
+        {src:'/hg/goal/img/guide.png'}
     ]);
 
     /**
