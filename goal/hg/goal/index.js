@@ -965,8 +965,8 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     var GAME_URL = 'http://go.uc.cn/page/goal/game?uc_param_str=dnfrpfbivecpbtnt';
     var DOWNLOAD_URL = 'http://www.uc.cn/ucbrowser/download/';
     var SHARE_IMAGE = 'http://image.uc.cn/s/uae/g/02/img/share.png';
-    var DOWNLOAD_HTML = log.isUC ? '' : ('下载<a id="download" href="' + DOWNLOAD_URL + '" target="_blank">UC浏览器获得更流畅体验</a>>>');
-
+    // var DOWNLOAD_HTML = log.isUC ? '' : ('下载<a id="download" href="' + DOWNLOAD_URL + '" target="_blank">UC浏览器获得更流畅体验</a>>>');
+    var DOWNLOAD_HTML = "";
     var isSupportTouch = exports.isSupportTouch = !!('ontouchend' in document);
     var EVENT_TYPE = exports.EVENT_TYPE =  isSupportTouch ? 'touchstart' : 'mousedown';
     
