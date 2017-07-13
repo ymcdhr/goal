@@ -179,12 +179,13 @@ define('ui', function(require, exports){
 
         if($.isApp){
             $.AppReady(function (Bridge) {
-                Bridge.closeWapPage();
 
                 if($.os.ios){
                     location.href = urlNew;
+                    Bridge.closeWapPage();
                 }
                 if($.os.android){
+                    Bridge.closeWapPage();
                     Bridge.pageRouter(urlNew);
                 }
             });
