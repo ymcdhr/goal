@@ -26,10 +26,12 @@ define('score', function(require, exports){
     };
 
     exports.add = function(num){
+
+        num = num || 1;
+        score += num;
+        dom.innerHTML = score;
+
         if(playing && this.notenough){
-            num = num || 1;
-            score += num;
-            dom.innerHTML = score;
             if(score >= MAX_SCORE){
                 this.notenough = false;
             }
