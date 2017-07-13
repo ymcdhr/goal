@@ -1,1 +1,46 @@
-define("score",function(n,e){var t=0,o=5,i=!0,r=document.getElementById("slided");r.innerHTML=t,e.notenough=!0,e.reset=function(){i=!0;var n=t;return this.notenough=!0,r.innerHTML=t=0,n},e.get=function(){return t},e.getMax=function(){return o},e.add=function(n){return n=n||1,t+=n,r.innerHTML=t,i&&this.notenough&&t>=o&&(this.notenough=!1),t},e.die=function(){i=!1}});
+define('score', function(require, exports){
+
+    var score = 0;
+    var MAX_SCORE = 4;//多少次铲球
+    var playing = true;
+
+    var dom = document.getElementById('slided');
+    dom.innerHTML = score;
+
+    exports.notenough = true;
+
+    exports.reset = function(){
+        playing = true;
+        var last = score;
+        this.notenough = true;
+        dom.innerHTML = score = 0;
+        return last;
+    };
+
+    exports.get = function(){
+        return score;
+    };
+
+    exports.getMax = function(){
+        return MAX_SCORE;
+    };
+
+    exports.add = function(num){
+
+        num = num || 1;
+        score += num;
+        dom.innerHTML = score;
+
+        if(playing && this.notenough){
+            if(score >= MAX_SCORE){
+                this.notenough = false;
+            }
+        }
+        return score;
+    };
+
+    exports.die = function(){
+        playing = false;
+    };
+
+});

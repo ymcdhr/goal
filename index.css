@@ -110,7 +110,8 @@ body.show-mask .main{}
 
 .score {
     position: absolute;
-    top: 0; right: 0;
+    top: 30px;
+    right: 0;
     width: 145px;
     height: 38px;
     background: url(img/timer.png?__inline) no-repeat 0 0;

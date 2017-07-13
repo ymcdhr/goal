@@ -1,1 +1,10 @@
-define("bg",function(e,i){i.create=function(e,i,t){var a=new createjs.Shape,n=e.width,r=(Math.ceil(i/n)+1)*n;return a.graphics.beginBitmapFill(e,"repeat-x").drawRect(0,0,r,t),a.imageWidth=n,a}});
+define('bg', function(require, exports){
+    exports.create = function(image, width, height){
+        var bg = new createjs.Shape();
+        var imgW = image.width;
+        var w = (Math.ceil(width / imgW) + 1) * imgW;
+        bg.graphics.beginBitmapFill(image, 'repeat-x').drawRect(0, 0, w, height);
+        bg.imageWidth = imgW;
+        return bg;
+    };
+});

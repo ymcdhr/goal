@@ -1,1 +1,25 @@
-define("gate",function(e,t){t.create=function(e){var t=new createjs.Shape;return t.graphics.beginBitmapFill(e,"no-repeat").drawRect(1,0,e.width,e.height),t.width=e.width,t},t.createGateLeft=function(e){var t=new createjs.Shape;return t.graphics.beginBitmapFill(e,"no-repeat").drawRect(1,0,e.width,e.height),t.regX=7,t.regY=102,t},t.createGateRight=function(e){var t=new createjs.Shape;return t.graphics.beginBitmapFill(e,"no-repeat").drawRect(1,0,e.width,e.height),t.regX=51,t.regY=255,t}});
+define('gate', function(require, exports){
+
+    exports.create = function(image){
+        var gate = new createjs.Shape();
+        gate.graphics.beginBitmapFill(image, 'no-repeat').drawRect(1, 0, image.width, image.height);
+        gate.width = image.width;
+        return gate;
+    };
+
+    exports.createGateLeft = function(image){
+        var shape = new createjs.Shape();
+        shape.graphics.beginBitmapFill(image, 'no-repeat').drawRect(1, 0, image.width, image.height);
+        shape.regX = 7;
+        shape.regY = 102;
+        return shape;
+    };
+
+    exports.createGateRight = function(image){
+        var shape = new createjs.Shape();
+        shape.graphics.beginBitmapFill(image, 'no-repeat').drawRect(1, 0, image.width, image.height);
+        shape.regX = 51;
+        shape.regY = 255;
+        return shape;
+    };
+});
