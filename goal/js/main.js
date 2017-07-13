@@ -96,17 +96,17 @@ define(function(require){
     loader.addEventListener('progress', ui.onLoaded);
     //预加载资源
     loader.loadManifest([
-        {src:'/hg/goal/img/squirrel.png', id: 'squirrel'},
-        {src:'/hg/goal/img/bg.png', id: 'bg'},
-        {src:'/hg/goal/img/ball.png', id: 'ball'},
-        {src:'/hg/goal/img/gate.png', id: 'gate'},
-        {src:'/hg/goal/img/gate_l.png', id: 'gate_l'},
-        {src:'/hg/goal/img/gate_r.png', id: 'gate_r'},
-        {src:'/hg/goal/img/keeper.png', id: 'keeper'},
-        {src:'/hg/goal/img/arrow.png', id: 'arrow'},
-        {src:'/hg/goal/img/player_1.png', id: 'player_1'},
-        {src:'/hg/goal/img/player_2.png', id: 'player_2'},
-        {src:'/hg/goal/img/guide.png'}
+        {src:'/img/squirrel.png', id: 'squirrel'},
+        {src:'/img/bg.png', id: 'bg'},
+        {src:'/img/ball.png', id: 'ball'},
+        {src:'/img/gate.png', id: 'gate'},
+        {src:'/img/gate_l.png', id: 'gate_l'},
+        {src:'/img/gate_r.png', id: 'gate_r'},
+        {src:'/img/keeper.png', id: 'keeper'},
+        {src:'/img/arrow.png', id: 'arrow'},
+        {src:'/img/player_1.png', id: 'player_1'},
+        {src:'/img/player_2.png', id: 'player_2'},
+        {src:'/img/guide.png'}
     ]);
 
     /**

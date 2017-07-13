@@ -602,7 +602,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     define('score', function(require, exports){
 
     var score = 0;
-    var MAX_SCORE = 10;//多少次铲球
+    var MAX_SCORE = 5;//多少次铲球
     var playing = true;
 
     var dom = document.getElementById('slided');
@@ -989,7 +989,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     function weixinShare(title, content){
         WeixinApi.ready(function(Api){
             var wxData = {
-                "imgUrl": '/hg/goal/img/apple-touch-icon-144.png',
+                "imgUrl": '/img/apple-touch-icon-144.png',
                 "link": GAME_URL,
                 "desc": content,
                 "title": title
@@ -1024,7 +1024,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     var mask = $('mask');
     
     exports.showGuide = function(callback){
-        $('story').innerHTML = getGuideMessage();
+        // $('story').innerHTML = getGuideMessage();
         $('start').innerHTML = '开始';
         $('guide').style.display = 'block';
         setTimeout(function(){
@@ -1054,7 +1054,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
                 '</div>',
                 '<div class="slogan"></div>',
                 '<div class="btn-bar">',
-                    '<span id="share" class="btn btn-share">' + (options.shareLabel || '分享战绩') + '</span>',
+                    '<span id="share" class="btn btn-share">' + (options.shareLabel || '去主会场') + '</span>',
                     '<span id="restart" class="btn">' + (options.restartLabel || '再玩一次') + '</span>',
                 '</div>',
             '</div>'
@@ -1092,11 +1092,13 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
         }, 300);
     };
     exports.getWinMessage = function(){
-        return [
-            '你凌空一脚，仅用<em>' + timer.get() + '</em>的时间就攻破了巴西的球门！',
-            '这一刻你是国家的英雄！<br/>',
-            DOWNLOAD_HTML
-        ].join('');
+        // return [
+        //     '你凌空一脚，仅用<em>' + timer.get() + '</em>的时间就攻破了巴西的球门！',
+        //     '这一刻你是国家的英雄！<br/>',
+        //     DOWNLOAD_HTML
+        // ].join('');
+
+        return "";
     };
     function getRate(score){
         return score < 2 ? score : (score - 1) * 5;
@@ -1104,37 +1106,60 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     exports.getFailMessage = function(){
         var s = score.get();
         var rate = getRate(s);
-        return [
-            '少年，你用了<em>' + timer.get() + '</em>的时间',
-            '躲过了<em>' + s + '</em>次防守，',
-            '战胜了<em>' + rate + '%</em>的挑战者！',
-            '球门就在前面，继续努力挑战吧！<br/>',
-            DOWNLOAD_HTML
-        ].join('');
+        // return [
+        //     '少年，你用了<em>' + timer.get() + '</em>的时间',
+        //     '躲过了<em>' + s + '</em>次防守，',
+        //     '战胜了<em>' + rate + '%</em>的挑战者！',
+        //     '球门就在前面，继续努力挑战吧！<br/>',
+        //     DOWNLOAD_HTML
+        // ].join('');
+        return "";
     };
     exports.share = function(isFail){
-        var s = score.get();
-        var rate = isFail ? getRate(s) : 99;
-        var title = 'UC世界杯在线足球游戏';
-        var success = isFail ? '' : '并最终攻入球门，';
-        var content = '我在UC世界杯足球挑战大赛用' + timer.get() + '的时间' +
-            '躲过了' + s + '次铲球袭击，' + success +
-            '战胜了' + rate + '%的挑战者！大家快来足球大赛挑战我吧！';
-        log.click('share');
-        if(window.ucweb && typeof window.ucweb.startRequest === 'function'){
-            var ret = ucweb.startRequest("shell.page_share", [title, content, GAME_URL, '']);
-        } else {
-            content = '#' + title + '# ' + content + ' ' + GAME_URL + ' @UC浏览器 ' + DOWNLOAD_URL;
-            var url = [
-                'http://rec.uc.cn/actplat/sharetheme/service/index?activityId=46&ruleId=48&uc_param_str=nidnssbifrpfuacpve',
-                'backUrl=' + encodeURIComponent(GAME_URL),
-                'content=' + encodeURIComponent(content),
-                'imgUrl=' + encodeURIComponent(SHARE_IMAGE)
-            ].join('&');
-            setTimeout(function(){
-                window.location.href = url;
-            }, 500);
+        // var s = score.get();
+        // var rate = isFail ? getRate(s) : 99;
+        // var title = 'UC世界杯在线足球游戏';
+        // var success = isFail ? '' : '并最终攻入球门，';
+        // var content = '我在UC世界杯足球挑战大赛用' + timer.get() + '的时间' +
+        //     '躲过了' + s + '次铲球袭击，' + success +
+        //     '战胜了' + rate + '%的挑战者！大家快来足球大赛挑战我吧！';
+        // log.click('share');
+        // if(window.ucweb && typeof window.ucweb.startRequest === 'function'){
+        //     var ret = ucweb.startRequest("shell.page_share", [title, content, GAME_URL, '']);
+        // } else {
+        //     content = '#' + title + '# ' + content + ' ' + GAME_URL + ' @UC浏览器 ' + DOWNLOAD_URL;
+        //     var url = [
+        //         'http://rec.uc.cn/actplat/sharetheme/service/index?activityId=46&ruleId=48&uc_param_str=nidnssbifrpfuacpve',
+        //         'backUrl=' + encodeURIComponent(GAME_URL),
+        //         'content=' + encodeURIComponent(content),
+        //         'imgUrl=' + encodeURIComponent(SHARE_IMAGE)
+        //     ].join('&');
+        //     setTimeout(function(){
+        //         window.location.href = url;
+        //     }, 500);
+        // }
+
+        console.log("去主会场！");
+
+        var url = "https://cuxiao.m.suning.com/TX0002.html";
+
+        if($.isApp){
+            $.AppReady(function (Bridge) {
+                Bridge.closeWapPage();
+
+                if($.os.ios){
+                    location.href = url;
+                }
+                if($.os.android){
+                    Bridge.pageRouter(url);
+                }
+            });
         }
+        else{
+            location.href = url;
+        }
+
+
     };
 });;
     define(function(require){
@@ -1235,17 +1260,17 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     loader.addEventListener('progress', ui.onLoaded);
     //预加载资源
     loader.loadManifest([
-        {src:'/hg/goal/img/squirrel.png', id: 'squirrel'},
-        {src:'/hg/goal/img/bg.png', id: 'bg'},
-        {src:'/hg/goal/img/ball.png', id: 'ball'},
-        {src:'/hg/goal/img/gate.png', id: 'gate'},
-        {src:'/hg/goal/img/gate_l.png', id: 'gate_l'},
-        {src:'/hg/goal/img/gate_r.png', id: 'gate_r'},
-        {src:'/hg/goal/img/keeper.png', id: 'keeper'},
-        {src:'/hg/goal/img/arrow.png', id: 'arrow'},
-        {src:'/hg/goal/img/player_1.png', id: 'player_1'},
-        {src:'/hg/goal/img/player_2.png', id: 'player_2'},
-        {src:'/hg/goal/img/guide.png'}
+        {src:'/img/squirrel.png', id: 'squirrel'},
+        {src:'/img/bg.png', id: 'bg'},
+        {src:'/img/ball.png', id: 'ball'},
+        {src:'/img/gate.png', id: 'gate'},
+        {src:'/img/gate_l.png', id: 'gate_l'},
+        {src:'/img/gate_r.png', id: 'gate_r'},
+        {src:'/img/keeper.png', id: 'keeper'},
+        {src:'/img/arrow.png', id: 'arrow'},
+        {src:'/img/player_1.png', id: 'player_1'},
+        {src:'/img/player_2.png', id: 'player_2'},
+        {src:'/img/guide.png'}
     ]);
 
     /**
