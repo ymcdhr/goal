@@ -174,17 +174,18 @@ define('ui', function(require, exports){
 
         console.log("去主会场！");
 
-        var url = "https://cuxiao.m.suning.com/TX0002.html";
+        var url = "https://cuxiao.m.suning.com/TX0002.html",
+            urlNew = "http://m.suning.com?adTypeCode=1002&adId="+encodeURIComponent(url);
 
         if($.isApp){
             $.AppReady(function (Bridge) {
                 Bridge.closeWapPage();
 
                 if($.os.ios){
-                    location.href = url;
+                    location.href = urlNew;
                 }
                 if($.os.android){
-                    Bridge.pageRouter(url);
+                    Bridge.pageRouter(urlNew);
                 }
             });
         }
