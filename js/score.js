@@ -1,7 +1,7 @@
 define('score', function(require, exports){
 
     var score = 0;
-    var MAX_SCORE = 5;//多少次铲球
+    var MAX_SCORE = 10;//多少次铲球
     var playing = true;
 
     var dom = document.getElementById('slided');

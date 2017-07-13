@@ -31,19 +31,35 @@ define('player', function(require, exports){
                 }
             }
         });
+        var playerFlag = 1;
         var player = new createjs.Sprite(sheet, 'stand_lc');
         player.sliding = false;
         player.hitTest = function(role){
             var x0 = role.x, y0 = role.y;
             var x1 = this.x, y1 = this.y;
+
             return x0 > x1 - 55 && x0 < x1 + 30 && y0 < y1 + 10 && y0 > y1 - 10;
         };
         player.slideTest = function(role){
             var x0 = role.x, y0 = role.y;
             var x1 = this.x, y1 = this.y;
             // return x0 > x1 - 200 && x0 < x1 - 65  && y0 < y1 + 15  && y0 > y1 - 15;
-            //配置铲球的距离，横纵距离
-            return x0 > x1 - 2 && x0 < x1 - 0;
+
+            //检测是否过人
+            if(x0 > x1 - 100 && x0 < x1 + 30){
+                if(playerFlag){
+
+                    playerFlag = 0;
+
+                    return true;
+                }
+            }
+            else{
+                playerFlag = 1;
+            }
+
+            return false;
+
 
         };
         player.slide = function(x, y){

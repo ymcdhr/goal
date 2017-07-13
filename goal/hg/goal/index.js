@@ -516,7 +516,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
                 url.push(key + '=' + encodeURIComponent(params[key]));
             }
         }
-        (new Image()).src = TRACE_URL + '?' + url.join('&');
+        // (new Image()).src = TRACE_URL + '?' + url.join('&');
     }
 
     exports.pv = function(){
@@ -602,7 +602,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     define('score', function(require, exports){
 
     var score = 0;
-    var MAX_SCORE = 5;//多少次铲球
+    var MAX_SCORE = 10;//多少次铲球
     var playing = true;
 
     var dom = document.getElementById('slided');
@@ -756,19 +756,35 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
                 }
             }
         });
+        var playerFlag = 1;
         var player = new createjs.Sprite(sheet, 'stand_lc');
         player.sliding = false;
         player.hitTest = function(role){
             var x0 = role.x, y0 = role.y;
             var x1 = this.x, y1 = this.y;
+
             return x0 > x1 - 55 && x0 < x1 + 30 && y0 < y1 + 10 && y0 > y1 - 10;
         };
         player.slideTest = function(role){
             var x0 = role.x, y0 = role.y;
             var x1 = this.x, y1 = this.y;
             // return x0 > x1 - 200 && x0 < x1 - 65  && y0 < y1 + 15  && y0 > y1 - 15;
-            //配置铲球的距离，横纵距离
-            return x0 > x1 - 2 && x0 < x1 - 0;
+
+            //检测是否过人
+            if(x0 > x1 - 100 && x0 < x1 + 30){
+                if(playerFlag){
+
+                    playerFlag = 0;
+
+                    return true;
+                }
+            }
+            else{
+                playerFlag = 1;
+            }
+
+            return false;
+
 
         };
         player.slide = function(x, y){
@@ -1001,7 +1017,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     function getGuideMessage(){
         return [
             '你将身负国家荣誉开始征战世界杯<br/>',
-            '带球接近对方球员会触发铲球袭击，完成<em>' + score.getMax() + '</em>次铲球躲避后进入射门状态。大力射起吧，少年！'
+            '带球接近对方球员会触发铲球袭击，完成<em>' + score.getMax() + '</em>次防守后进入射门状态。大力射起吧，少年！'
         ].join('');
     }
 
@@ -1061,11 +1077,11 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
         setTimeout(function(){
             document.body.className = 'show-mask show-panel';
         }, 100);
-        if(!log.isUC){
-            $('download').addEventListener(EVENT_TYPE, function(){
-                log.click('download');
-            }, false);
-        }
+        // if(!log.isUC){
+        //     $('download').addEventListener(EVENT_TYPE, function(){
+        //         log.click('download');
+        //     }, false);
+        // }
     };
     exports.hidePanel = function(callback){
         document.body.className = 'show-mask';
@@ -1090,7 +1106,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
         var rate = getRate(s);
         return [
             '少年，你用了<em>' + timer.get() + '</em>的时间',
-            '躲过了<em>' + s + '</em>次铲球袭击，',
+            '躲过了<em>' + s + '</em>次防守，',
             '战胜了<em>' + rate + '%</em>的挑战者！',
             '球门就在前面，继续努力挑战吧！<br/>',
             DOWNLOAD_HTML
@@ -1177,6 +1193,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
         started = false,    //是否已开始
         status = 0;         //状态，0: 带球躲铲，1: 进入禁区，2: 准备射门，3: 射门完成
     var scoreNum = 0;
+    var playerFlag = 1;
 
     //帧率设置
     var framerate = 60;
@@ -1653,6 +1670,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
                 addPlayer();
             }
 
+
             //整理unusedPlayers和role.players数组
             var oldPlayers = role.players;
             var newPlayers = role.players = [];
@@ -1667,17 +1685,30 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
                     if(player.hitTest(squirrel)){   //碰撞检测
                         var offset = ball.x < player.x + 10 ? -75 : 65;
                         fail(ball.x + offset - 50 * Math.random(), ball.y - 20 + 40 * Math.random());
+
+                        // console.log(squirrel.x,player.x);
                         return;
                     } else if(!player.sliding){
-                        if(player.slideTest(squirrel)){  //铲球检测
+
+
+
+                        if(player.slideTest(squirrel)){  //过人检测
                             // player.slide(squirrel.x - 50, squirrel.y);
+
+
+
+
+                            //是否超过多少人，在add里面判断
+                            scoreNum = score.add();
+                            console.log("过人，得分：",scoreNum);
+
+
+
                             player.x -= delta;
                             if(player.x < stageWidth){    //盯梢检测
                                 player.stareAt(squirrel);
                             }
-                            //是否超过多少人，在add里面判断
-                            scoreNum = score.add();
-                            console.log("过人，得分：",scoreNum);
+
 
                         } else {
                             player.x -= delta;

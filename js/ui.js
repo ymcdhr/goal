@@ -50,7 +50,7 @@ define('ui', function(require, exports){
     function getGuideMessage(){
         return [
             '你将身负国家荣誉开始征战世界杯<br/>',
-            '带球接近对方球员会触发铲球袭击，完成<em>' + score.getMax() + '</em>次铲球躲避后进入射门状态。大力射起吧，少年！'
+            '带球接近对方球员会触发铲球袭击，完成<em>' + score.getMax() + '</em>次防守后进入射门状态。大力射起吧，少年！'
         ].join('');
     }
 
@@ -110,11 +110,11 @@ define('ui', function(require, exports){
         setTimeout(function(){
             document.body.className = 'show-mask show-panel';
         }, 100);
-        if(!log.isUC){
-            $('download').addEventListener(EVENT_TYPE, function(){
-                log.click('download');
-            }, false);
-        }
+        // if(!log.isUC){
+        //     $('download').addEventListener(EVENT_TYPE, function(){
+        //         log.click('download');
+        //     }, false);
+        // }
     };
     exports.hidePanel = function(callback){
         document.body.className = 'show-mask';
@@ -139,7 +139,7 @@ define('ui', function(require, exports){
         var rate = getRate(s);
         return [
             '少年，你用了<em>' + timer.get() + '</em>的时间',
-            '躲过了<em>' + s + '</em>次铲球袭击，',
+            '躲过了<em>' + s + '</em>次防守，',
             '战胜了<em>' + rate + '%</em>的挑战者！',
             '球门就在前面，继续努力挑战吧！<br/>',
             DOWNLOAD_HTML
