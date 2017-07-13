@@ -1146,18 +1146,28 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
         var url = "https://cuxiao.m.suning.com/TX0002.html",
             urlNew = "http://m.suning.com?adTypeCode=1002&adId="+encodeURIComponent(url);
 
-        if($.isApp){
-            $.AppReady(function (Bridge) {
 
-                if($.os.ios){
-                    location.href = urlNew;
-                    Bridge.closeWapPage();
-                }
-                if($.os.android){
-                    Bridge.closeWapPage();
-                    Bridge.pageRouter(urlNew);
-                }
-            });
+        var a = window.navigator.userAgent;
+
+        var device = {
+            isApp: a.match(/SNEBUY-APP;?/i) ? true : false,
+            isLite: a.match(/SNLITE-WAP/i) ? true : false,
+            isYfb: a.match(/SNYifubao;?/i) ? true : false,
+            isAndroid: a.match(/android/i) ? true : false,
+            isIOS: a.match(/(iPhone|iPod|iPad);?/i) ? true : false,
+            isWX: a.match(/MicroMessenger/i) ? true : false
+        };
+
+
+        if(device.isApp){
+            if(device.isIOS && SNNativeClient){
+                location.href = urlNew;
+                SNNativeClient.closeWapPage();
+            }
+            if(device.isAndroid && baseApi){
+                baseApi.closeWapPage();
+                baseApi.pageRouter(urlNew);
+            }
         }
         else{
             location.href = url;
