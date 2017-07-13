@@ -1056,7 +1056,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
                 '</div>',
                 '<div class="slogan"></div>',
                 '<div class="btn-bar">',
-                    '<span id="share" class="btn btn-share">' + (options.shareLabel || '去主会场') + '</span>',
+                    '<span id="share" class="btn btn-share">' + (options.shareLabel || '去抢手机') + '</span>',
                     '<span id="restart" class="btn">' + (options.restartLabel || '再玩一次') + '</span>',
                 '</div>',
             '</div>'

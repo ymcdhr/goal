@@ -121,6 +121,7 @@ body.show-mask .main{}
     line-height: 16px;
     font-size: 18px;
     color: #fff;
+    display: none;
 }
 
 #slided,
