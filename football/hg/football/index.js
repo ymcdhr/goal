@@ -1160,13 +1160,31 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
 
 
         if(device.isApp){
-            if(device.isIOS && SNNativeClient){
-                location.href = urlNew;
-                SNNativeClient.closeWapPage();
+            if(device.isIOS){
+                if(SNNativeClient){
+                    location.href = urlNew;
+                    SNNativeClient.closeWapPage();
+                }
+                // else {
+                //     document.addEventListener("SNNativeClientReady", function () {
+                //         location.href = urlNew;
+                //         SNNativeClient.closeWapPage();
+                //     });
+                // }
             }
-            if(device.isAndroid && baseApi){
-                baseApi.closeWapPage();
-                baseApi.pageRouter(urlNew);
+            if(device.isAndroid){
+
+                if(baseApi){
+                    baseApi.closeWapPage();
+                    baseApi.pageRouter(urlNew);
+                }
+                else{
+                    document.addEventListener("deviceready",function(){
+                        baseApi.closeWapPage();
+                        baseApi.pageRouter(urlNew);
+                    },false);
+                }
+
             }
         }
         else{
