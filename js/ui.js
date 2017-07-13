@@ -174,8 +174,24 @@ define('ui', function(require, exports){
 
         console.log("去主会场！");
 
-        $.AppReady(function (Bridge) {
-            
-        });
+        var url = "//c.m.suning.com/";
+
+        if($.isApp){
+            $.AppReady(function (Bridge) {
+                Bridge.closeWapPage();
+
+                if($.os.ios){
+                    location.href = url;
+                }
+                if($.os.android){
+                    Bridge.pageRouter(url);
+                }
+            });
+        }
+        else{
+            location.href = url;
+        }
+
+
     };
 });
