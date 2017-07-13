@@ -174,7 +174,7 @@ define('ui', function(require, exports){
 
         console.log("去主会场！");
 
-        var url = "//c.m.suning.com/";
+        var url = "https://cuxiao.m.suning.com/TX0002.html";
 
         if($.isApp){
             $.AppReady(function (Bridge) {
