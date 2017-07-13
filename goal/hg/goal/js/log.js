@@ -64,7 +64,7 @@ define('log', function(require, exports){
                 url.push(key + '=' + encodeURIComponent(params[key]));
             }
         }
-        (new Image()).src = TRACE_URL + '?' + url.join('&');
+        // (new Image()).src = TRACE_URL + '?' + url.join('&');
     }
 
     exports.pv = function(){

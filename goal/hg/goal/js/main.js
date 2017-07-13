@@ -54,6 +54,7 @@ define(function(require){
         started = false,    //是否已开始
         status = 0;         //状态，0: 带球躲铲，1: 进入禁区，2: 准备射门，3: 射门完成
     var scoreNum = 0;
+    var playerFlag = 1;
 
     //帧率设置
     var framerate = 60;
@@ -530,6 +531,7 @@ define(function(require){
                 addPlayer();
             }
 
+
             //整理unusedPlayers和role.players数组
             var oldPlayers = role.players;
             var newPlayers = role.players = [];
@@ -544,17 +546,30 @@ define(function(require){
                     if(player.hitTest(squirrel)){   //碰撞检测
                         var offset = ball.x < player.x + 10 ? -75 : 65;
                         fail(ball.x + offset - 50 * Math.random(), ball.y - 20 + 40 * Math.random());
+
+                        // console.log(squirrel.x,player.x);
                         return;
                     } else if(!player.sliding){
-                        if(player.slideTest(squirrel)){  //铲球检测
+
+
+
+                        if(player.slideTest(squirrel)){  //过人检测
                             // player.slide(squirrel.x - 50, squirrel.y);
+
+
+
+
+                            //是否超过多少人，在add里面判断
+                            scoreNum = score.add();
+                            console.log("过人，得分：",scoreNum);
+
+
+
                             player.x -= delta;
                             if(player.x < stageWidth){    //盯梢检测
                                 player.stareAt(squirrel);
                             }
-                            //是否超过多少人，在add里面判断
-                            scoreNum = score.add();
-                            console.log("过人，得分：",scoreNum);
+
 
                         } else {
                             player.x -= delta;
