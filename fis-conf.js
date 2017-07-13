@@ -1,3 +1,3 @@
 fis.match('*',{
-   release : '/hg/goal/$0'
+   release : '/hg/football/$0'
 });
