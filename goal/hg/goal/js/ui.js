@@ -22,7 +22,7 @@ define('ui', function(require, exports){
     function weixinShare(title, content){
         WeixinApi.ready(function(Api){
             var wxData = {
-                "imgUrl": '/img/apple-touch-icon-144.png',
+                "imgUrl": '/hg/goal/img/apple-touch-icon-144.png',
                 "link": GAME_URL,
                 "desc": content,
                 "title": title
