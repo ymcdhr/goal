@@ -980,7 +980,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     function nop(){}
 
     // var GAME_URL = 'http://t.cn/Rvf1xG1';
-    var GAME_URL = 'http://go.uc.cn/page/goal/game?uc_param_str=dnfrpfbivecpbtnt';
+    var GAME_URL = 'http://sale.suning.com/hg/football/index.html';
     var DOWNLOAD_URL = 'http://www.uc.cn/ucbrowser/download/';
     var SHARE_IMAGE = 'http://image.uc.cn/s/uae/g/02/img/share.png';
     // var DOWNLOAD_HTML = log.isUC ? '' : ('下载<a id="download" href="' + DOWNLOAD_URL + '" target="_blank">UC浏览器获得更流畅体验</a>>>');
@@ -991,7 +991,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
     function weixinShare(title, content){
         WeixinApi.ready(function(Api){
             var wxData = {
-                "imgUrl": '/hg/football/img/apple-touch-icon-144.png',
+                "imgUrl": 'http://sale.suning.com/hg/football/img/favicon.ico',
                 "link": GAME_URL,
                 "desc": content,
                 "title": title
@@ -1004,7 +1004,7 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
             Api.shareToWeibo(wxData);
         });
     }
-    weixinShare('UC世界杯在线足球游戏', '我正在参加UC世界杯足球挑战大赛，精彩游戏，精彩世界杯，大家都一起来玩吧！');
+    weixinShare('苏宁世界杯在线足球游戏', '我正在参加苏宁世界杯足球挑战大赛，精彩游戏，精彩世界杯，大家都一起来玩吧！');
 
     exports.onLoaded = function(e){
         $('loaded').style.width = parseInt((e.loaded || 0) * 100) + '%';
@@ -1042,6 +1042,13 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
                     }
                 }, 200);
                 log.click('start');
+
+                try{
+                    sa.click.sendDatasIndex(this);
+                }
+                catch (e){
+                }
+
             }, false);
         }, 0);
     };
@@ -1056,24 +1063,35 @@ this.createjs=this.createjs||{},function(){"use strict";var a=function(a,b,c){th
                 '</div>',
                 '<div class="slogan"></div>',
                 '<div class="btn-bar">',
-                    '<span id="share" class="btn btn-share">' + (options.shareLabel || '去抢手机') + '</span>',
-                    '<span id="restart" class="btn">' + (options.restartLabel || '再玩一次') + '</span>',
+                    '<span id="share" name="sn_foot_ball_share" class="btn btn-share">' + (options.shareLabel || '去抢手机') + '</span>',
+                    '<span id="restart" name="sn_foot_ball_restart" class="btn">' + (options.restartLabel || '再玩一次') + '</span>',
                 '</div>',
             '</div>'
         ].join('');
         var s = score.get();
         var rate = getRate(s);
         var success = options.isFail ? '' : '并最终攻入球门，';
-        var content = '我在UC世界杯足球挑战大赛用' + timer.get() + '的时间' +
+        var content = '我在苏宁世界杯足球挑战大赛用' + timer.get() + '的时间' +
             '躲过了' + s + '次铲球袭击，' + success +
             '战胜了' + rate + '%的挑战者！大家快来足球大赛挑战我吧！';
-        weixinShare('UC世界杯在线足球游戏', content);
+        weixinShare('苏宁世界杯在线足球游戏', content);
         $('share').addEventListener(EVENT_TYPE, function(){
             exports.share(options.isFail);
+            try{
+                sa.click.sendDatasIndex(this);
+            }
+            catch (e){
+            }
         }, false);
         $('restart').addEventListener(EVENT_TYPE, function(){
             exports.hidePanel(options.onRestart || nop);
             log.click('restart');
+
+            try{
+                sa.click.sendDatasIndex(this);
+            }
+            catch (e){
+            }
         }, false);
         document.body.className = 'show-mask';
         setTimeout(function(){
